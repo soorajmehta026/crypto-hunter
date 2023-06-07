@@ -1,44 +1,46 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
 import { CoinList } from '../Config';
 import { CryptoState } from '../CryptoContext';
-import axios from 'axios'
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function numberWithCommas(x)
-{
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",")
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
 export default function CoinsTable() {
-    const [coins, setCoins] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [search, setSearch] = useState('');
+  const [coins, setCoins] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState('');
+  const navigate = useNavigate();
+  const { currency, symbol } = CryptoState();
 
-//const [page, setpage] = useState(1);
-
-
- const navigate = useNavigate();
-
-const{currency,symbol}= CryptoState();
-
-async function fetchcoins() {
-  setLoading(true);
-  const { data } = await axios.get(CoinList(currency));
-  setCoins(data);
-  setLoading(false);
-}
-
-useEffect(() => {
-  fetchcoins();
-}, [currency]);
-
-    function handleSearch()
-    {
-      return coins.filter(
-        (coin)=>coin.name.toLowerCase().includes(search)||
-      coin.symbol.toLowerCase().includes(search));
+  const fetchCoins = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(CoinList(currency));
+      if (!response.ok) {
+        throw new Error('Network response was not OK');
+      }
+      const data = await response.json();
+      setCoins(data);
+    } catch (error) {
+      console.error(error);
     }
-    
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchCoins();
+  }, [currency]);
+
+  const handleSearch = () => {
+    return coins.filter(
+      (coin) =>
+        coin.name.toLowerCase().includes(search) ||
+        coin.symbol.toLowerCase().includes(search)
+    );
+  };
+
   return (
     <>
     <div style={{ textAlign:'center'}}>
@@ -160,6 +162,7 @@ useEffect(() => {
           {symbol}{" "}{numberWithCommas(row.current_price.toFixed(2))}
 
         </td>
+
 
         <td 
         style={{

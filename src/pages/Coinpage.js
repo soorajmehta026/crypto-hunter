@@ -1,31 +1,32 @@
-import React, { useState,useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { CryptoState } from '../CryptoContext';
 import { SingleCoin } from '../Config';
 import CoinInfo from '../components/CoinInfo';
-import axios from 'axios';
-import { Parser } from "html-to-react";
+import { Parser } from 'html-to-react';
 
 export default function Coinpage() {
-  
-
   const { id } = useParams();
-const [coin, setCoin] = useState();
- const {currency,symbol}=CryptoState();
+  const [coin, setCoin] = useState();
+  const { currency, symbol } = CryptoState();
 
- async function fetchCoin(){
-  
-  const { data } = await axios.get(SingleCoin(id));
- 
+  const fetchCoin = async () => {
+    try {
+      const response = await fetch(SingleCoin(id));
+      if (!response.ok) {
+        throw new Error('Network response was not OK');
+      }
+      const data = await response.json();
+      setCoin(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-  setCoin(data);
+  useEffect(() => {
+    fetchCoin();
+  }, [currency]);
 
- };
- useEffect(()=>
- {
-  fetchCoin();
-
- },[currency])
  const htmlParser = new Parser();
  function numberWithCommas(x)
 {
