@@ -1,6 +1,4 @@
 
-
-
 import React, { useEffect, useState } from 'react';
 import { CryptoState } from '../CryptoContext';
 import SelectButton from './SelectButton';
