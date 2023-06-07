@@ -15,7 +15,7 @@ export default function Header() {
           fontWeight: 'bold',
           cursor: 'pointer',
         }}
-        onClick={() => navigate("/")}
+        onClick={() => navigate("/crypto-hunter")}
       >
         Crypto Hunter
       </div>
