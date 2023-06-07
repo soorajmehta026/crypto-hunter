@@ -18,7 +18,7 @@ function App() {
      
     <Routes>
    
-    <Route path="/" Component={Homepage} exact/>
+    <Route path="/crypto-hunter" Component={Homepage} exact/>
     <Route path="/coins/:id" Component={Coinpage} />
    
  
