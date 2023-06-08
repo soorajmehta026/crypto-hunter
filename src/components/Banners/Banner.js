@@ -1,10 +1,11 @@
 import React from 'react'
 import Carousel from './Carousel'
+import '../Banners/banner.css'
 
 export default function Banner() {
   return (
-    <div style={{
-      backgroundImage: "url(./banner2.jpg)",
+    <div className='rower' style={{
+      
       height:400,
       display:"flex",
       flexDirection:"column",
@@ -20,12 +21,13 @@ export default function Banner() {
       }}>
       <div className="d-flex justify-content-center" style={{
          fontSize:50,
-         
+         color:"gold",
          fontFamily: 'Montserrat',
          fontWeight: 'bold',
+         marginTop: '25px'
        
       }}>
-        Crypto Hunter
+        CryptoKeeper
         
       </div>
       <div className="d-flex justify-content-center" style={{

@@ -22,11 +22,11 @@ export default function Coinpage() {
       console.error(error);
     }
   };
+ useEffect(()=>
+ {
+  fetchCoin();
 
-  useEffect(() => {
-    fetchCoin();
-  }, [currency]);
-
+ },[currency])
  const htmlParser = new Parser();
  function numberWithCommas(x)
 {
@@ -38,6 +38,7 @@ if(!coin) return <div>loading.........</div>
     <div style={{
       width:'100%',
       display:'flex',
+     
       
     }}>
    <div style={{
@@ -46,8 +47,9 @@ if(!coin) return <div>loading.........</div>
     display:'flex',
     flexDirection:'column',
     alignItems:'center',
-    marginTop:25,
+    marginTop:"80px",
     borderRight:'2px solid grey',
+    
    }}>
 <img src={coin?.image.large} alt={coin?.name} height='200' 
 style={{marginBottom:20}} />
@@ -96,6 +98,7 @@ style={{marginBottom:20}} />
    </div>
    <div style={{
     width:'70%',
+    marginTop:"50px"
    }}>
  <CoinInfo coin={coin} />
  </div>

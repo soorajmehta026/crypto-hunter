@@ -73,8 +73,7 @@ export default function CoinsTable() {
 
 
  <div className='container'>
- { loading ? (<div class="progress">
- Loading....</div>):
+ { 
 (
   <table class="table table-borderless table-dark" 
     
@@ -84,7 +83,7 @@ export default function CoinsTable() {
 
   >
   <thead style={{
-    background:"gold"
+    background:"#FFA7A6"
   }}>
     <tr style={{
       color:"black",
@@ -162,7 +161,6 @@ export default function CoinsTable() {
           {symbol}{" "}{numberWithCommas(row.current_price.toFixed(2))}
 
         </td>
-
 
         <td 
         style={{

@@ -13,7 +13,13 @@ function App() {
    
    
     <BrowserRouter>
+    <div style={{
+      position: 'fixed',
+      
+      width: '100%',
+      zindex: 999,    }}>
     <Header />
+    </div>
     <div className='main'>
      
     <Routes>

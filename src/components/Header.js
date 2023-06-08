@@ -6,24 +6,25 @@ export default function Header() {
   const { currency , setCurrency } =CryptoState();
 
   return (
-    <nav className="navbar" style={{ outline: '2px solid black', backgroundColor: '#14161a' }}>
+    <nav className="navbar" style={{ backgroundColor:'black' ,outline: '2px solid black' }}>
       <div
         className="navbar__title"
         style={{
-          color: 'gold',
+          color: '#FFA7A6',
           fontFamily: 'Montserrat',
           fontWeight: 'bold',
           cursor: 'pointer',
+          
         }}
         onClick={() => navigate("/crypto-hunter")}
       >
-        Crypto Hunter
+        CryptoKeeper
       </div>
       <div className="navbar__select">
         <select  style={{
-            backgroundColor: '#1e2125',
-            color: 'white',
-            border: '5px white',
+            backgroundColor: 'WHITE',
+            color: 'BLACK',
+            border: '10px white',
             borderRadius: '4px',
             padding: '8px',
           }}  value={currency} onChange={(e)=> setCurrency(e.target.value)}>
