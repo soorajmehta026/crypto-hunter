@@ -24,7 +24,7 @@ export default function Banner() {
          color:"gold",
          fontFamily: 'Montserrat',
          fontWeight: 'bold',
-         marginTop: '25px'
+         
        
       }}>
         CryptoKeeper
